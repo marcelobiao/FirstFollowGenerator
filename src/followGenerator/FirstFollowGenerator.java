@@ -25,23 +25,42 @@ public class FirstFollowGenerator {
 	}
 	
 	public ArrayList<String> firstUnit(String key){
+		System.out.println(key);
 		Iterator<ArrayList<String>> prods = this.dict.get(key).iterator();
 		ArrayList<String> firsts = new ArrayList<String>();
 		while(prods.hasNext()){
 			Iterator<String> elementos = ((ArrayList<String>)prods.next()).iterator();
-			while(elementos.hasNext()){
+			while(elementos.hasNext()){//TODO: não precisa do loop, só precisa olhar o primeiro aqui
 				String temp = elementos.next().toString();
 				if(this.isTerminal(temp)){
-					firsts.add(temp);
+					if(!firsts.contains(temp))
+						firsts.add(temp);
+					break;
+				}
+				else if(temp.contains("E")){
+					if(!firsts.contains("E"))
+						firsts.add("E");
 					break;
 				}
 				else{
-					firsts.addAll(firstUnit(temp));
-					
+					firsts = this.mergeArraylist(firsts, firstUnit(temp));
+					if(!this.containsE(temp))
+						break;
+					//TODO: checar as produções que começam com E.
 				}
 			}
 		}
 		return firsts;
+	}
+	
+	public ArrayList<String> mergeArraylist(ArrayList<String> a, ArrayList<String> b){
+		Iterator iteratorB = b.iterator();
+		while (iteratorB.hasNext()){
+			String element = iteratorB.next().toString();
+			if(!a.contains(element))
+				a.add(element);
+		}
+		return a;
 	}
 	
 	public boolean containsE(String key){

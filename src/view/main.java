@@ -18,10 +18,8 @@ public class main {
 			p.read();
 			FirstFollowGenerator generator = new FirstFollowGenerator(p.getDict());
 			generator.firstGenerator();
-			//Map<String, ArrayList<String>> firsts = generator.getFirst();
-			//System.out.println(firsts);
-			System.out.println(generator.containsE("<A>"));
-			System.out.println(generator.containsE("<D>"));
+			Map<String, ArrayList<String>> firsts = generator.getFirst();
+			System.out.println(firsts);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
