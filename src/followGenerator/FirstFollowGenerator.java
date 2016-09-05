@@ -33,12 +33,26 @@ public class FirstFollowGenerator {
 				String temp = elementos.next().toString();
 				if(this.isTerminal(temp)){
 					firsts.add(temp);
+					break;
+				}
+				else{
+					firsts.addAll(firstUnit(temp));
+					
 				}
 			}
 		}
 		return firsts;
 	}
 	
+	public boolean containsE(String key){
+		Iterator<ArrayList<String>> prods = this.dict.get(key).iterator();
+		while(prods.hasNext()){
+			if(prods.next().contains("E")){
+				return true;
+			}
+		}
+		return false;
+	}
 	public boolean isTerminal(String elemento){
 		if(elemento.endsWith("'"))
 			return true;
