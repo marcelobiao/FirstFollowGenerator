@@ -34,6 +34,7 @@ public class ProcGLC {
 		
 		while(line != null){
 			String[] regra = line.split("::=");
+			//TODO: Resolver IndexOutOfBound, causado pro entradas sem ::=
 			String[] prodsTex = regra[1].trim().split("\\|" );
 			
 			ArrayList<ArrayList<String>> prods = new ArrayList<ArrayList<String>>();

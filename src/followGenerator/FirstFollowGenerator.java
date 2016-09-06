@@ -46,7 +46,6 @@ public class FirstFollowGenerator {
 					firsts = this.mergeArraylist(firsts, firstUnit(temp));
 					if(!this.containsE(temp))
 						break;
-					//TODO: checar as produções que começam com E.
 				}
 			}
 		}
@@ -54,10 +53,11 @@ public class FirstFollowGenerator {
 	}
 	
 	public ArrayList<String> mergeArraylist(ArrayList<String> a, ArrayList<String> b){
+		//TODO: Consertar o armengue de não precisar adicionar o E nas chamadas recursivas.
 		Iterator iteratorB = b.iterator();
 		while (iteratorB.hasNext()){
 			String element = iteratorB.next().toString();
-			if(!a.contains(element))
+			if(!a.contains(element) && !element.equals("E"))
 				a.add(element);
 		}
 		return a;
